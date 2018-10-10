@@ -1,0 +1,145 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://PlatformTileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Sprites/Background/Sky.png" type="Texture" id=2]
+[ext_resource path="res://Reisen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fairy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	pass
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+func _process(delta):
+	var platform = $Node/Platforms
+	
+	var map_limits = platform.get_used_rect()
+	var map_cellsize = platform.cell_size
+	
+	var left_limit = map_limits.position.x * map_cellsize.x
+	var right_limit =  map_limits.end.x * map_cellsize.x
+	var down_limit =  map_limits.end.y * map_cellsize.y
+	$KinematicBody2D/Camera2D.limit_left = left_limit
+	$KinematicBody2D/Camera2D.limit_right = right_limit
+	$KinematicBody2D/Camera2D.limit_bottom = down_limit + 16
+	
+	if($KinematicBody2D.get_position().x < left_limit + 8):
+		$KinematicBody2D.position.x = 8
+		
+	elif($KinematicBody2D.get_position().x > right_limit - 8):
+		$KinematicBody2D.position.x = right_limit - 8
+		
+	elif($KinematicBody2D.get_position().y > down_limit):
+		$KinematicBody2D.position = Vector2(-32, -8)
+"
+
+[sub_resource type="StreamTexture" id=3]
+
+flags = 3
+load_path = "res://.import/background2.png-f31d5d1d201be48ff8d6f3f822c6d3f0.stex"
+
+[node name="Level1" type="Node2D" index="0"]
+
+script = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Node" type="Node" parent="." index="0"]
+
+[node name="Platforms" type="TileMap" parent="Node" index="0"]
+
+position = Vector2( -136, 16 )
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = true
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 131092, 1, 0, 131093, 2, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0, 196615, 4, 0, 196616, 4, 0, 196617, 4, 0, 196618, 4, 0, 196619, 4, 0, 196620, 4, 0, 196621, 4, 0, 196622, 4, 0, 196623, 4, 0, 196624, 4, 0, 196625, 4, 0, 196626, 4, 0, 196627, 4, 0, 196628, 4, 0, 196629, 4, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 4, 0, 262152, 4, 0, 262153, 4, 0, 262154, 4, 0, 262155, 4, 0, 262156, 4, 0, 262157, 4, 0, 262158, 4, 0, 262159, 4, 0, 262160, 4, 0, 262161, 4, 0, 262162, 4, 0, 262163, 4, 0, 262164, 4, 0, 262165, 4, 0, 262166, 12, 0, 262167, 13, 0, 327680, 4, 0, 327681, 4, 0, 327682, 4, 0, 327683, 4, 0, 327684, 4, 0, 327685, 4, 0, 327686, 4, 0, 327687, 4, 0, 327688, 4, 0, 327689, 4, 0, 327690, 4, 0, 327691, 4, 0, 327692, 4, 0, 327693, 4, 0, 327694, 4, 0, 327695, 4, 0, 327696, 4, 0, 327697, 4, 0, 327698, 4, 0, 327699, 4, 0, 327700, 4, 0, 327701, 4, 0, 393216, 4, 0, 393217, 4, 0, 393218, 4, 0, 393219, 4, 0, 393220, 4, 0, 393221, 4, 0, 393222, 4, 0, 393223, 4, 0, 393224, 4, 0, 393225, 4, 0, 393226, 4, 0, 393227, 4, 0, 393228, 4, 0, 393229, 4, 0, 393230, 4, 0, 393231, 4, 0, 393232, 4, 0, 393233, 4, 0, 393234, 4, 0, 393235, 4, 0, 393236, 4, 0, 393237, 4, 0, 458752, 4, 0, 458753, 4, 0, 458754, 4, 0, 458755, 4, 0, 458756, 4, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0, 458760, 4, 0, 458761, 4, 0, 458762, 4, 0, 458763, 4, 0, 458764, 4, 0, 458765, 4, 0, 458766, 4, 0, 458767, 4, 0, 458768, 4, 0, 458769, 4, 0, 458770, 4, 0, 458771, 4, 0, 458772, 4, 0, 458773, 4, 0, 524288, 4, 0, 524289, 4, 0, 524290, 4, 0, 524291, 4, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 524300, 4, 0, 524301, 4, 0, 524302, 4, 0, 524303, 4, 0, 524304, 4, 0, 524305, 4, 0, 524306, 4, 0, 524307, 4, 0, 524308, 4, 0, 524309, 4, 0, 524310, 12, 0, 524311, 13, 0, 589824, 4, 0, 589825, 4, 0, 589826, 4, 0, 589827, 4, 0, 589828, 4, 0, 589829, 4, 0, 589830, 4, 0, 589831, 4, 0, 589832, 4, 0, 589833, 4, 0, 589834, 4, 0, 589835, 4, 0, 589836, 4, 0, 589837, 4, 0, 589838, 4, 0, 589839, 4, 0, 589840, 4, 0, 589841, 4, 0, 589842, 4, 0, 589843, 4, 0, 589844, 4, 0, 589845, 4, 0, 589871, 0, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0, 589876, 1, 0, 589877, 1, 0, 589878, 1, 0, 589879, 1, 0, 589880, 1, 0, 589881, 1, 0, 589882, 1, 0, 589883, 1, 0, 589884, 1, 0, 589885, 1, 0, 589886, 1, 0, 589887, 1, 0, 589888, 1, 0, 589889, 1, 0, 589890, 1, 0, 589891, 1, 0, 589892, 1, 0, 589893, 1, 0, 589894, 1, 0, 589895, 2, 0, 589899, 1, 0, 589900, 1, 0, 589901, 1, 0, 589902, 1, 0, 589903, 1, 0, 589904, 1, 0, 589905, 1, 0, 589906, 1, 0, 589907, 2, 0, 655360, 4, 0, 655361, 4, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 4, 0, 655371, 4, 0, 655372, 4, 0, 655373, 4, 0, 655374, 4, 0, 655375, 4, 0, 655376, 4, 0, 655377, 4, 0, 655378, 4, 0, 655379, 4, 0, 655380, 4, 0, 655381, 4, 0, 655407, 4, 0, 655408, 4, 0, 655409, 4, 0, 655410, 4, 0, 655411, 4, 0, 655412, 4, 0, 655413, 4, 0, 655414, 4, 0, 655415, 4, 0, 655416, 4, 0, 655417, 4, 0, 655418, 4, 0, 655419, 4, 0, 655420, 4, 0, 655421, 4, 0, 655422, 4, 0, 655423, 4, 0, 655424, 4, 0, 655425, 4, 0, 655426, 4, 0, 655427, 4, 0, 655428, 4, 0, 655429, 4, 0, 655430, 4, 0, 655431, 5, 0, 655435, 4, 0, 655436, 4, 0, 655437, 4, 0, 655438, 4, 0, 655439, 4, 0, 655440, 4, 0, 655441, 4, 0, 655442, 4, 0, 655443, 4, 0, 720896, 4, 0, 720897, 4, 0, 720898, 4, 0, 720899, 4, 0, 720900, 4, 0, 720901, 4, 0, 720902, 4, 0, 720903, 4, 0, 720904, 4, 0, 720905, 4, 0, 720906, 4, 0, 720907, 4, 0, 720908, 4, 0, 720909, 4, 0, 720910, 4, 0, 720911, 4, 0, 720912, 4, 0, 720913, 4, 0, 720914, 4, 0, 720915, 4, 0, 720916, 4, 0, 720917, 4, 0, 720918, 1, 0, 720919, 1, 0, 720920, 1, 0, 720921, 1, 0, 720922, 1, 0, 720923, 2, 0, 720927, 0, 0, 720928, 1, 0, 720929, 1, 0, 720930, 1, 0, 720931, 1, 0, 720932, 1, 0, 720933, 1, 0, 720934, 1, 0, 720935, 1, 0, 720936, 1, 0, 720937, 1, 0, 720938, 2, 0, 720939, 1, 0, 720940, 1, 0, 720941, 1, 0, 720942, 1, 0, 720943, 4, 0, 720944, 4, 0, 720945, 4, 0, 720946, 4, 0, 720947, 4, 0, 720948, 4, 0, 720949, 4, 0, 720950, 4, 0, 720951, 4, 0, 720952, 4, 0, 720953, 4, 0, 720954, 4, 0, 720955, 4, 0, 720956, 4, 0, 720957, 4, 0, 720958, 4, 0, 720959, 4, 0, 720960, 4, 0, 720961, 4, 0, 720962, 4, 0, 720963, 4, 0, 720964, 4, 0, 720965, 4, 0, 720966, 4, 0, 720967, 5, 0, 720971, 4, 0, 720972, 4, 0, 720973, 4, 0, 720974, 4, 0, 720975, 4, 0, 720976, 4, 0, 720977, 4, 0, 720978, 4, 0, 720979, 4, 0, 786432, 4, 0, 786433, 4, 0, 786434, 4, 0, 786435, 4, 0, 786436, 4, 0, 786437, 4, 0, 786438, 4, 0, 786439, 4, 0, 786440, 4, 0, 786441, 4, 0, 786442, 4, 0, 786443, 4, 0, 786444, 4, 0, 786445, 4, 0, 786446, 4, 0, 786447, 4, 0, 786448, 4, 0, 786449, 4, 0, 786450, 4, 0, 786451, 4, 0, 786452, 4, 0, 786453, 4, 0, 786454, 4, 0, 786455, 4, 0, 786456, 4, 0, 786457, 4, 0, 786458, 4, 0, 786459, 4, 0, 786463, 3, 0, 786464, 3, 0, 786465, 3, 0, 786466, 3, 0, 786467, 3, 0, 786468, 3, 0, 786469, 3, 0, 786470, 3, 0, 786471, 3, 0, 786472, 3, 0, 786473, 3, 0, 786474, 3, 0, 786475, 3, 0, 786476, 4, 0, 786477, 4, 0, 786478, 4, 0, 786479, 4, 0, 786480, 4, 0, 786481, 4, 0, 786482, 4, 0, 786483, 4, 0, 786484, 4, 0, 786485, 4, 0, 786486, 4, 0, 786487, 4, 0, 786488, 4, 0, 786489, 7, 0, 786490, 7, 0, 786491, 7, 0, 786492, 7, 0, 786493, 7, 0, 786494, 7, 0, 786495, 7, 0, 786496, 7, 0, 786497, 7, 0, 786498, 7, 0, 786499, 7, 0, 786500, 7, 0, 786501, 7, 0, 786502, 7, 0, 786503, 5, 0, 786507, 4, 0, 786508, 4, 0, 786509, 4, 0, 786510, 4, 0, 786511, 4, 0, 786512, 4, 0, 786513, 4, 0, 786514, 4, 0, 786515, 4, 0 )
+_sections_unfolded = [ "Cell", "Collision", "Material", "Occluder", "Transform", "Visibility" ]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="1"]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+
+visible = false
+position = Vector2( 1568, -168 )
+scale = Vector2( 1, 1.62 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 3600, 600 )
+_sections_unfolded = [ "Region" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
+
+visible = false
+position = Vector2( 1640, 168 )
+texture = SubResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 3744, 300 )
+_sections_unfolded = [ "Material", "Pause", "Region", "Transform", "Visibility" ]
+
+[node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 3 )]
+
+self_modulate = Color( 0.988281, 0.988281, 0.988281, 1 )
+position = Vector2( -32, -8 )
+_sections_unfolded = [ "Transform", "Visibility", "collision" ]
+
+[node name="Fairies" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 264, 160 )
+
+[node name="Fairy" parent="Fairies" index="0" groups=[
+"Fairies",
+] instance=ExtResource( 4 )]
+
+position = Vector2( 0, 16 )
+
+
