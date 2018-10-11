@@ -5,9 +5,10 @@
 [node name="ghost" type="Sprite"]
 
 modulate = Color( 0.320312, 0.320312, 0.320312, 1 )
-show_behind_parent = true
+light_mask = 0
+z_as_relative = false
 script = ExtResource( 1 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Region", "Transform", "Visibility", "Z Index" ]
 
 [node name="alpha_tween" type="Tween" parent="." index="0"]
 

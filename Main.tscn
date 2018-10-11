@@ -43,7 +43,7 @@ func _process(delta):
 		$KinematicBody2D.position = Vector2(-32, -8)
 "
 
-[node name="Level1" type="Node2D" index="0"]
+[node name="Level1" type="Node2D"]
 
 script = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -52,6 +52,8 @@ __meta__ = {
 }
 
 [node name="TileMaps" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
 
 [node name="TileMap" type="TileMap" parent="TileMaps" index="0"]
 
@@ -96,6 +98,7 @@ tile_data = PoolIntArray( -131049, 34, 0, -65511, 34, 0, 23, 34, 0, 65561, 34, 0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="1"]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0

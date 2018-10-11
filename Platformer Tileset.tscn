@@ -424,10 +424,12 @@ shape = SubResource( 1 )
 [node name="inside4" type="Sprite" parent="Inside" index="3"]
 
 position = Vector2( 80, 32 )
+z_index = -1
+z_as_relative = false
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 16, 16, 16 )
-_sections_unfolded = [ "Offset", "Region" ]
+_sections_unfolded = [ "Offset", "Region", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -435,10 +437,11 @@ __meta__ = {
 [node name="inside5" type="Sprite" parent="Inside" index="4"]
 
 position = Vector2( 104, 32 )
+z_index = -1
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 80, 16, 16, 16 )
-_sections_unfolded = [ "Offset", "Region" ]
+_sections_unfolded = [ "Offset", "Region", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -468,10 +471,11 @@ __meta__ = {
 [node name="inside8" type="Sprite" parent="Inside" index="7"]
 
 position = Vector2( 104, 56 )
+z_index = -1
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 80, 32, 16, 16 )
-_sections_unfolded = [ "Offset", "Region" ]
+_sections_unfolded = [ "Offset", "Region", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
