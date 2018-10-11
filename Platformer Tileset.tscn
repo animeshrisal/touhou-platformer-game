@@ -9,7 +9,11 @@ extents = Vector2( 8, 8 )
 
 [node name="Node" type="Node"]
 
-[node name="0" type="Sprite" parent="." index="0"]
+[node name="Ground" type="Node" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="Ground0" type="Sprite" parent="Ground" index="0"]
 
 editor/display_folded = true
 position = Vector2( 8, 8 )
@@ -21,7 +25,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="0" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground0" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -31,11 +35,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="0/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground0/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="1" type="Sprite" parent="." index="1"]
+[node name="Ground1" type="Sprite" parent="Ground" index="1"]
 
 editor/display_folded = true
 position = Vector2( 32, 8 )
@@ -47,7 +51,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="1" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground1" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -57,11 +61,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="1/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground1/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="2" type="Sprite" parent="." index="2"]
+[node name="Ground2" type="Sprite" parent="Ground" index="2"]
 
 editor/display_folded = true
 position = Vector2( 56, 8 )
@@ -73,7 +77,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="2" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground2" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -83,11 +87,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="2/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground2/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="3" type="Sprite" parent="." index="3"]
+[node name="Ground3" type="Sprite" parent="Ground" index="3"]
 
 editor/display_folded = true
 position = Vector2( 8, 32 )
@@ -99,7 +103,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="3" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground3" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -109,11 +113,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="3/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground3/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="4" type="Sprite" parent="." index="4"]
+[node name="Ground4" type="Sprite" parent="Ground" index="4"]
 
 editor/display_folded = true
 position = Vector2( 32, 32 )
@@ -125,7 +129,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="4" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground4" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -135,11 +139,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="4/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground4/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="5" type="Sprite" parent="." index="5"]
+[node name="Ground5" type="Sprite" parent="Ground" index="5"]
 
 editor/display_folded = true
 position = Vector2( 56, 32 )
@@ -151,7 +155,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="5" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground5" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -161,11 +165,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="5/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground5/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="6" type="Sprite" parent="." index="6"]
+[node name="Ground6" type="Sprite" parent="Ground" index="6"]
 
 editor/display_folded = true
 position = Vector2( 8, 56 )
@@ -177,7 +181,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="6" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground6" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -187,11 +191,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="6/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground6/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="7" type="Sprite" parent="." index="7"]
+[node name="Ground7" type="Sprite" parent="Ground" index="7"]
 
 editor/display_folded = true
 position = Vector2( 32, 56 )
@@ -203,7 +207,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="7" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground7" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -213,11 +217,11 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="7/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground7/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="8" type="Sprite" parent="." index="8"]
+[node name="Ground8" type="Sprite" parent="Ground" index="8"]
 
 editor/display_folded = true
 position = Vector2( 56, 56 )
@@ -229,7 +233,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="8" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Ground8" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -239,13 +243,42 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="8/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground8/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="bridge1" type="Sprite" parent="." index="9"]
+[node name="Bridge" type="Node" parent="." index="1"]
 
+[node name="bridge1" type="Sprite" parent="Bridge" index="0"]
+
+editor/display_folded = true
 position = Vector2( 8, 80 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 64, 16, 16 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bridge/bridge1" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge/bridge1/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="bridge2" type="Sprite" parent="Bridge" index="1"]
+
+editor/display_folded = true
+position = Vector2( 32, 80 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 16, 64, 16, 16 )
@@ -254,7 +287,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bridge1" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Bridge/bridge2" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -264,15 +297,15 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bridge1/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge/bridge2/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 one_way_collision = true
 
-[node name="bridge2" type="Sprite" parent="." index="10"]
+[node name="bridge3" type="Sprite" parent="Bridge" index="2"]
 
 editor/display_folded = true
-position = Vector2( 32, 80 )
+position = Vector2( 56, 80 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 64, 16, 16 )
@@ -281,7 +314,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bridge2" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Bridge/bridge3" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -291,9 +324,155 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bridge2/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge/bridge3/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 one_way_collision = true
+
+[node name="Inside" type="Node" parent="." index="2"]
+
+[node name="inside1" type="Sprite" parent="Inside" index="0"]
+
+editor/display_folded = true
+position = Vector2( 80, 8 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inside/inside1" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/inside1/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="inside2" type="Sprite" parent="Inside" index="1"]
+
+editor/display_folded = true
+position = Vector2( 104, 8 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 0, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inside/inside2" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/inside2/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="inside3" type="Sprite" parent="Inside" index="2"]
+
+editor/display_folded = true
+position = Vector2( 128, 8 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inside/inside3" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/inside3/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="inside4" type="Sprite" parent="Inside" index="3"]
+
+position = Vector2( 80, 32 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 16, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="inside5" type="Sprite" parent="Inside" index="4"]
+
+position = Vector2( 104, 32 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 16, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="inside6" type="Sprite" parent="Inside" index="5"]
+
+position = Vector2( 128, 32 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 16, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="inside7" type="Sprite" parent="Inside" index="6"]
+
+position = Vector2( 80, 56 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 32, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="inside8" type="Sprite" parent="Inside" index="7"]
+
+position = Vector2( 104, 56 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 32, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="inside9" type="Sprite" parent="Inside" index="8"]
+
+position = Vector2( 128, 56 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 32, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 

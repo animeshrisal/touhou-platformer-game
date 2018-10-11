@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sky.png-dc99e17f5d23a5427410fc00bda6ce44.stex"
+path="res://.import/clouds.png-2280375958bb13c294a5af0352a719b6.stex"
 
 [deps]
 
-source_file="res://Sprites/Background/Sky.png"
-dest_files=[ "res://.import/Sky.png-dc99e17f5d23a5427410fc00bda6ce44.stex" ]
+source_file="res://Sprites/Background/clouds.png"
+dest_files=[ "res://.import/clouds.png-2280375958bb13c294a5af0352a719b6.stex" ]
 
 [params]
 
