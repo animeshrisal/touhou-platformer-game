@@ -19,7 +19,7 @@ custom_solver_bias = 0.0
 a = Vector2( -8, -8 )
 b = Vector2( 8, 8 )
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 [node name="Ground" type="Node" parent="." index="0"]
 
@@ -493,8 +493,6 @@ __meta__ = {
 
 [node name="FullBridge" type="Node" parent="." index="3"]
 
-editor/display_folded = true
-
 [node name="bridge4" type="Sprite" parent="FullBridge" index="0"]
 
 position = Vector2( 8, 120 )
@@ -693,7 +691,7 @@ position = Vector2( 48, 152 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 16, 112, 64, 16 )
-_sections_unfolded = [ "Region" ]
+_sections_unfolded = [ "Offset", "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -712,6 +710,7 @@ bounce = 0.0
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -8, -15.9898, -4.83878, -0.13921, -3.99239, 18.0049, -4.21933, 32.0526, -7.9798, 31.9698, -5.1111, 15.9423, -1.99182, 0.014679, -1.06848, -16.1437, -1.99182, -31.9174, -6.76239 )
+one_way_collision = true
 
 [node name="Hanging Platform" type="Node" parent="." index="4"]
 
