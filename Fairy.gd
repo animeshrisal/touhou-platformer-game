@@ -10,6 +10,9 @@ var counter = 0
 var y = 20
 var motion = Vector2(0, y)
 var UP = Vector2(0, -1)
+var target
+var position_difference
+
 const TYPE = "FAIRY"
 
 func _ready():
@@ -28,6 +31,13 @@ func _physics_process(delta):
 		motion.y = y
 		counter = 0
 
+	if target:	
+		print("AAAA")
+		position_difference = target.global_position - global_position
+		if position_difference.x < 0:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true
 		
 	new_animation = "fly"
 	position += motion * delta
@@ -37,3 +47,20 @@ func _physics_process(delta):
 		$AnimationPlayer.play(current_animation)
 		
 	motion = move_and_slide(motion, UP)
+
+
+func _on_Visibility_body_entered(body):
+	if body.get("TYPE") == "PLAYER":
+		target = body
+		var bullet = preload("res://Scenes/Bullet.tscn").instance()
+		
+		bullet.position = get_position()
+		bullet.BULLET_SPEED = 100
+		position_difference = body.global_position - global_position
+
+		bullet.speed = position_difference.normalized()
+		get_parent().add_child(bullet);
+		
+	else:
+		target = null
+		

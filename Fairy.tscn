@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fairy.gd" type="Script" id=1]
 [ext_resource path="res://fairy.png" type="Texture" id=2]
@@ -32,7 +32,12 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 9, 11 )
 
-[node name="Fairy" type="KinematicBody2D"]
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 60.0
+
+[node name="Fairy" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -64,6 +69,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 [node name="Area2D" type="Area2D" parent="." index="3"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -76,5 +82,22 @@ audio_bus_name = "Master"
 
 position = Vector2( 0.209347, 0.104671 )
 shape = SubResource( 3 )
+
+[node name="Visibility" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility" index="0"]
+
+shape = SubResource( 4 )
+_sections_unfolded = [ "Pause", "Transform", "Visibility", "Z Index" ]
+
+[connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
 
 

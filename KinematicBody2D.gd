@@ -14,6 +14,7 @@ const ACCELERATION = 20
 var counter = 0
 var motion = Vector2()
 var knockdir = Vector2(0, 0)
+const TYPE = "PLAYER"
 
 
 func _physics_process(delta):
@@ -92,7 +93,7 @@ func _physics_process(delta):
 		bullet.position.y += 4
 		
 		if $AnimatedSprite.flip_h == true:
-			bullet.speed_x = 2
+			bullet.speed.x = 2
 			bullet.position.x += 4
 			bullet.set_scale(Vector2(-1, 1))
 		
@@ -109,15 +110,6 @@ func _physics_process(delta):
 			knockdir = transform.origin - body.transform.origin
 			hitstun = 1
 			
-			
-
-	
-
-		
-
-
-		
-		
 func _on_ghost_timer_timeout():
 	if running == true:
 		var this_ghost = preload("res://ghost.tscn").instance()
