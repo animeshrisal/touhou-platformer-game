@@ -52,7 +52,7 @@ func _physics_process(delta):
 func _on_Visibility_body_entered(body):
 	if body.get("TYPE") == "PLAYER":
 		target = body
-		var bullet = preload("res://Scenes/Bullet.tscn").instance()
+		var bullet = preload("res://Scenes/FairyBullet.tscn").instance()
 		
 		bullet.position = get_position()
 		bullet.BULLET_SPEED = 100
