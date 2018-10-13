@@ -32,7 +32,6 @@ func _physics_process(delta):
 		counter = 0
 
 	if target:	
-		print("AAAA")
 		position_difference = target.global_position - global_position
 		if position_difference.x < 0:
 			$Sprite.flip_h = false
@@ -52,8 +51,8 @@ func _physics_process(delta):
 func _on_Visibility_body_entered(body):
 	if body.get("TYPE") == "PLAYER":
 		target = body
-		var bullet = preload("res://Scenes/FairyBullet.tscn").instance()
-		
+		var bullet = preload("res://Bullet2.tscn").instance()
+		print(bullet.get("TYPE"))
 		bullet.position = get_position()
 		bullet.BULLET_SPEED = 100
 		position_difference = body.global_position - global_position

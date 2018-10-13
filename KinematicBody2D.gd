@@ -5,7 +5,7 @@ var current_animation = ""
 var running = false
 var shooting = false
 var hitstun = 0
-
+var position_difference
 const UP = Vector2(0, -1)
 var GRAVITY = 20
 const MAX_SPEED = 200
@@ -103,11 +103,17 @@ func _physics_process(delta):
 	if current_animation != new_animation:
 		$AnimatedSprite.play(new_animation)
 		
-	motion = move_and_slide(motion, UP)
+		
+	if hitstun == 0:
+		motion = move_and_slide(motion, UP)
+	else:
+		hitstun = 0
+		motion = move_and_slide(position_difference.normalized() * -250, UP)
+		
 		
 	for body in $Area2D.get_overlapping_bodies():
 		if body.get("TYPE") == "FAIRY":
-			knockdir = transform.origin - body.transform.origin
+			position_difference = body.global_position - global_position
 			hitstun = 1
 			
 func _on_ghost_timer_timeout():
@@ -118,3 +124,11 @@ func _on_ghost_timer_timeout():
 		this_ghost.texture = $AnimatedSprite.frames.get_frame($AnimatedSprite.animation, $AnimatedSprite.frame)
 		this_ghost.flip_h = $AnimatedSprite.flip_h
 
+func _on_Area2D_area_entered(area):
+	if area.get("TYPE") == "FAIRY_BULLET":
+		area.queue_free()
+		hitstun = 1
+		position_difference = area.global_position - global_position
+
+	
+	

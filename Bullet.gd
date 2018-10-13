@@ -7,6 +7,7 @@ extends Area2D
 var speed = Vector2(-2, 0)
 
 var BULLET_SPEED = 400
+const TYPE = "PLAYER_BULLET"
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -26,7 +27,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_Bullet_body_entered(body):
 
 	if body.is_in_group("Fairies"):
-		print("AAAA")
 		queue_free()
 		body.queue_free() # replace with function body
 
