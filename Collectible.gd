@@ -4,4 +4,9 @@ func _process(delta):
 	pass
 
 func _on_Area2D_area_entered(area):
-	queue_free() # replace with function body
+	pass# replace with function body
+
+
+func _on_Area2D_body_entered(body):
+	if body.get("TYPE") == "PLAYER":
+		queue_free()

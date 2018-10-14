@@ -27,7 +27,7 @@ func _physics_process(delta):
 		motion.y = -y
 		
 		
-	if counter == 100:
+	elif counter == 100:
 		motion.y = y
 		counter = 0
 

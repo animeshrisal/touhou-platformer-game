@@ -37,15 +37,16 @@ extents = Vector2( 13.5811, 14.7437 )
 custom_solver_bias = 0.0
 radius = 60.0
 
-[node name="Fairy" type="KinematicBody2D"]
+[node name="Fairy" type="KinematicBody2D" index="0"]
 
+modulate = Color( 0.527344, 0.527344, 0.527344, 1 )
 z_as_relative = false
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Z Index" ]
+_sections_unfolded = [ "Collision", "Visibility", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

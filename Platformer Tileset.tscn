@@ -760,10 +760,12 @@ _sections_unfolded = [ "Z Index" ]
 [node name="Top" type="Sprite" parent="Top" index="0"]
 
 position = Vector2( 96, 216 )
+z_index = 4
+z_as_relative = false
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 144, 192, 48 )
-_sections_unfolded = [ "Region", "Visibility" ]
+_sections_unfolded = [ "Region", "Visibility", "Z Index" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Top/Top" index="0"]
 
@@ -774,6 +776,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top/Top/StaticBody2D" index="0"]
 

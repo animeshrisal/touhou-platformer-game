@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
+signal health_changed
+
 var new_animation = ""
 var current_animation = ""
 var running = false
 var shooting = false
 var hitstun = 0
-var position_difference
+var position_difference = Vector2(0, 0)
 const UP = Vector2(0, -1)
 var GRAVITY = 20
 const MAX_SPEED = 200
@@ -15,6 +17,9 @@ var counter = 0
 var motion = Vector2()
 var knockdir = Vector2(0, 0)
 const TYPE = "PLAYER"
+export var max_health = 10
+var health = max_health
+
 
 
 func _physics_process(delta):
@@ -66,10 +71,12 @@ func _physics_process(delta):
 			new_animation = "shoot"
 		friction = true
 		
-	if is_on_floor():
+
 		
+	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			motion.y = JUMP_HEIGHT
+
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.2)
 	else:
@@ -107,9 +114,15 @@ func _physics_process(delta):
 	if hitstun == 0:
 		motion = move_and_slide(motion, UP)
 	else:
+		health -= 1
 		hitstun = 0
 		motion = move_and_slide(position_difference.normalized() * -250, UP)
+		emit_signal("health_changed")
 		
+		if health <= 0:
+			get_tree().change_scene("res://Main Menu.tscn")
+			
+	
 		
 	for body in $Area2D.get_overlapping_bodies():
 		if body.get("TYPE") == "FAIRY":
