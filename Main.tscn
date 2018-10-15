@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://PlatformTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Sprites/Background/forest3.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Background/forest2.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Background/forest.png" type="Texture" id=4]
-[ext_resource path="res://Reisen.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Fairy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Collectible.tscn" type="PackedScene" id=7]
-[ext_resource path="res://UI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=9]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Background/forest.png" type="Texture" id=5]
+[ext_resource path="res://Reisen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fairy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Collectible.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=10]
 
 [sub_resource type="GDScript" id=1]
 
@@ -54,7 +55,62 @@ func _process(delta):
 		
 "
 
-[node name="Level1" type="Node2D"]
+[sub_resource type="Shader" id=2]
+
+code = "shader_type canvas_item;
+
+uniform vec3 color = vec3(0.35, 0.48, 0.95);
+uniform int OCTAVES = 4;
+
+float rand(vec2 coord){
+	return fract(sin(dot(coord, vec2(56, 78)) * 1000.0) * 1000.0);
+}
+
+float noise(vec2 coord){
+	vec2 i = floor(coord);
+	vec2 f = fract(coord);
+
+	// 4 corners of a rectangle surrounding our point
+	float a = rand(i);
+	float b = rand(i + vec2(1.0, 0.0));
+	float c = rand(i + vec2(0.0, 1.0));
+	float d = rand(i + vec2(1.0, 1.0));
+
+	vec2 cubic = f * f * (3.0 - 2.0 * f);
+
+	return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+
+float fbm(vec2 coord){
+	float value = 0.0;
+	float scale = 0.4;
+
+	for(int i = 0; i < OCTAVES; i++){
+		value += noise(coord) * scale;
+		coord *= 2.0;
+		scale *= 0.5;
+	}
+	return value;
+}
+
+void fragment() {
+	vec2 coord = UV * 20.0;
+
+	vec2 motion = vec2( fbm(coord + vec2(TIME * -0.5, TIME * 0.5)) );
+
+	float final = fbm(coord + motion);
+
+	COLOR = vec4(color, final * 0.5);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+
+render_priority = 0
+shader = SubResource( 2 )
+shader_param/color = null
+shader_param/OCTAVES = null
+
+[node name="Level1" type="Node2D" index="0"]
 
 script = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -156,6 +212,20 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 9000, 600 )
 _sections_unfolded = [ "Region", "Transform" ]
 
+[node name="FogBack" type="Node2D" parent="ParallaxBackground/forestsecond" index="1"]
+
+position = Vector2( 117.325, 66.7852 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/forestsecond/FogBack" index="0"]
+
+material = SubResource( 3 )
+position = Vector2( 2250.83, -21.1308 )
+scale = Vector2( 4.16758, 7.26657 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 70, 1200, 70 )
+_sections_unfolded = [ "Material", "Region", "Transform" ]
+
 [node name="Forestfront" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
 
 motion_scale = Vector2( 1, 1 )
@@ -166,12 +236,12 @@ _sections_unfolded = [ "Motion" ]
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Forestfront" index="0"]
 
 position = Vector2( 4240, 20 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 9000, 600 )
 _sections_unfolded = [ "Material", "Pause", "Region", "Transform", "Visibility" ]
 
-[node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 5 )]
+[node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 6 )]
 
 modulate = Color( 0.558594, 0.558594, 0.558594, 1 )
 self_modulate = Color( 0.988281, 0.988281, 0.988281, 1 )
@@ -185,49 +255,49 @@ position = Vector2( 264, 160 )
 
 [node name="Fairy" parent="Fairies" index="0" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( -4, -140 )
 
 [node name="Fairy2" parent="Fairies" index="1" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( 316, -60 )
 
 [node name="Fairy3" parent="Fairies" index="2" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( 486, -110 )
 
 [node name="Fairy4" parent="Fairies" index="3" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( 926, -70 )
 
 [node name="Fairy8" parent="Fairies" index="4" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( 2076, 60 )
 
 [node name="Fairy9" parent="Fairies" index="5" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( 2226, 60 )
 
 [node name="Fairy10" parent="Fairies" index="6" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( 2386, 60 )
 
 [node name="Fairy6" parent="Fairies" index="7" groups=[
 "Fairies",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 7 )]
 
 position = Vector2( 1986, 60 )
 
@@ -237,74 +307,73 @@ editor/display_folded = true
 visible = false
 position = Vector2( 160, 56 )
 
-[node name="Collectible" parent="Collectibles" index="0" instance=ExtResource( 7 )]
+[node name="Collectible" parent="Collectibles" index="0" instance=ExtResource( 8 )]
 
-[node name="Collectible3" parent="Collectibles" index="1" instance=ExtResource( 7 )]
+[node name="Collectible3" parent="Collectibles" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 376, -64 )
 
-[node name="Collectible4" parent="Collectibles" index="2" instance=ExtResource( 7 )]
+[node name="Collectible4" parent="Collectibles" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( 400, -64 )
 
-[node name="Collectible5" parent="Collectibles" index="3" instance=ExtResource( 7 )]
+[node name="Collectible5" parent="Collectibles" index="3" instance=ExtResource( 8 )]
 
 position = Vector2( 424, -64 )
 
-[node name="Collectible6" parent="Collectibles" index="4" instance=ExtResource( 7 )]
+[node name="Collectible6" parent="Collectibles" index="4" instance=ExtResource( 8 )]
 
 position = Vector2( 448, -64 )
 
-[node name="Collectible7" parent="Collectibles" index="5" instance=ExtResource( 7 )]
+[node name="Collectible7" parent="Collectibles" index="5" instance=ExtResource( 8 )]
 
 position = Vector2( 640, 32 )
 
-[node name="Collectible8" parent="Collectibles" index="6" instance=ExtResource( 7 )]
+[node name="Collectible8" parent="Collectibles" index="6" instance=ExtResource( 8 )]
 
 position = Vector2( 664, 32 )
 
-[node name="Collectible9" parent="Collectibles" index="7" instance=ExtResource( 7 )]
+[node name="Collectible9" parent="Collectibles" index="7" instance=ExtResource( 8 )]
 
 position = Vector2( 648, -48 )
 
-[node name="Collectible13" parent="Collectibles" index="8" instance=ExtResource( 7 )]
+[node name="Collectible13" parent="Collectibles" index="8" instance=ExtResource( 8 )]
 
 position = Vector2( 1336, 64 )
 
-[node name="Collectible14" parent="Collectibles" index="9" instance=ExtResource( 7 )]
+[node name="Collectible14" parent="Collectibles" index="9" instance=ExtResource( 8 )]
 
 position = Vector2( 1460, -126 )
 
-[node name="Collectible15" parent="Collectibles" index="10" instance=ExtResource( 7 )]
+[node name="Collectible15" parent="Collectibles" index="10" instance=ExtResource( 8 )]
 
 position = Vector2( 1460, -126 )
 
-[node name="Collectible16" parent="Collectibles" index="11" instance=ExtResource( 7 )]
+[node name="Collectible16" parent="Collectibles" index="11" instance=ExtResource( 8 )]
 
 position = Vector2( 1580, -166 )
 
-[node name="Collectible17" parent="Collectibles" index="12" instance=ExtResource( 7 )]
+[node name="Collectible17" parent="Collectibles" index="12" instance=ExtResource( 8 )]
 
 position = Vector2( 1600, -166 )
 
-[node name="Collectible18" parent="Collectibles" index="13" instance=ExtResource( 7 )]
+[node name="Collectible18" parent="Collectibles" index="13" instance=ExtResource( 8 )]
 
 position = Vector2( 1680, -116 )
 
-[node name="Collectible19" parent="Collectibles" index="14" instance=ExtResource( 7 )]
+[node name="Collectible19" parent="Collectibles" index="14" instance=ExtResource( 8 )]
 
 position = Vector2( 1690, -116 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="UI" parent="CanvasLayer" index="0" instance=ExtResource( 8 )]
+[node name="UI" parent="CanvasLayer" index="0" instance=ExtResource( 9 )]
 
 margin_left = 10.0
 margin_top = 10.0
@@ -313,11 +382,13 @@ margin_bottom = 50.0
 
 [node name="Torches" type="Node2D" parent="." index="6"]
 
-[node name="Torch" parent="Torches" index="0" instance=ExtResource( 9 )]
+visible = false
+
+[node name="Torch" parent="Torches" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 49.949, -15.9643 )
 
-[node name="Torch2" parent="Torches" index="1" instance=ExtResource( 9 )]
+[node name="Torch2" parent="Torches" index="1" instance=ExtResource( 10 )]
 
 position = Vector2( 2066.51, 32.0612 )
 _sections_unfolded = [ "Transform", "Z Index" ]
